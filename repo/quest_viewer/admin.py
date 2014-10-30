@@ -11,6 +11,7 @@ class DisciplineAdmin(admin.ModelAdmin):
 
 class SubjectAdmin(admin.ModelAdmin):
 	inlines = (DisciplinesSubject__relationshipInline, )
+	list_display = ('name', 'main_disciplines_list_comma_separated')
 
 admin.site.register(Discipline, DisciplineAdmin)
 admin.site.register(Subject, SubjectAdmin)

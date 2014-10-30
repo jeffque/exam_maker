@@ -25,10 +25,18 @@ class Subject(models.Model):
 	def full_description(self):
 		ret = []
 		ret.append(self.name)
-		ret.append("Discipline: " + ','.join([str(discipline_subj.discipline) for discipline_subj in self.disciplinessubject_set.all() if discipline_subj.main_discipline]))
+		ret.append("Discipline: " + ','.join(self.main_disciplines_list()))
 		if (self.super_subject != None):
 			ret.append("Super-subject<" + str(self.super_subject) + ">")
 		return ';'.join(ret)
+
+	def main_disciplines_list(self):
+		return [str(discipline_subj.discipline) for discipline_subj in self.disciplinessubject_set.all() if discipline_subj.main_discipline]
+
+	def main_disciplines_list_comma_separated(self, comma=', '):
+		return comma.join(self.main_disciplines_list())
+	main_disciplines_list_comma_separated.short_description = 'Main disciplines'
+
 	name = models.CharField(max_length=100)
 	disciplines = models.ManyToManyField(Discipline, through='DisciplinesSubject')
 	super_subject = models.ForeignKey('self', null=True, default=None, blank=True)
