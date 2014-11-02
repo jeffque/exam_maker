@@ -60,6 +60,8 @@ class Source(models.Model):
 	institute = models.ForeignKey(Institute)
 	year = models.IntegerField(null=True, blank=True)
 	comments = models.ManyToManyField(Comment, blank=True)
+	class Meta:
+		unique_together = ('institute','year')
 
 class ImagesUrl(models.Model):
 	url = models.CharField(max_length=1000)
