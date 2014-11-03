@@ -43,6 +43,10 @@ class Subject(models.Model):
 	comments = models.ManyToManyField(Comment, blank=True)
 
 class DisciplinesSubject(models.Model):
+	def __unicode__(self):
+		return str(self.discipline) + ('(!)' if self.main_discipline else '') + ' - ' + str(self.subject)
+	class Meta:
+		unique_together = ('discipline', 'subject')
 	discipline = models.ForeignKey(Discipline)
 	subject = models.ForeignKey(Subject)
 	main_discipline = models.BooleanField(default=False)
