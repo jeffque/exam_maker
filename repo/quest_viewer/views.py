@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def index(request):
+	return HttpResponse('Test')
+
+def discipline(request,discipline_id):
+	return HttpResponse('ID used for discipline: %s' % discipline_id)
