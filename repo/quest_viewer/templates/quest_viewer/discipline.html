@@ -1,0 +1,10 @@
+<h1><a href='/v/discipline/{{ discipline_id }}'>{{ discipline }}</a></h1>
+{% if subject_list %}
+	<ul>
+		{% for subject in subject_list %}
+			<li><a href='/v/subject/{{ subject.id }}'>{{ subject }}</a></li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>No subjects for this discipline available</p>
+{% endif %}
