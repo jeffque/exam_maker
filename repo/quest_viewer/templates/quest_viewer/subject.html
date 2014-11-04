@@ -1,3 +1,8 @@
+<html>
+	<head>
+		<title>Subject {{ subject }}</title>
+	</head>
+	<body>
 <h1><a href='/v/subject/{{ subject_id }}'>{{ subject }}</a></h1>
 {% if discipline_list %}
 	<ul>
@@ -8,3 +13,5 @@
 {% else %}
 	<p>No disciplines for this subject available</p>
 {% endif %}
+	</body>
+</html>
