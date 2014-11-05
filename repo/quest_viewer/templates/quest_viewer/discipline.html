@@ -1,8 +1,6 @@
-<html>
-	<head>
-		<title>Discipline {{ discipline }}</title>
-	</head>
-	<body>
+{% extends 'base.html' %}
+{% block title %}Discipline {{ discipline }}{% endblock %}
+{% block content %}
 <h1><a href='{% url 'discipline' discipline_id %}'>{{ discipline }}</a></h1>
 {% if subject_list %}
 	<ul>
@@ -13,5 +11,4 @@
 {% else %}
 	<p>No subjects for this discipline available</p>
 {% endif %}
-	</body>
-</html>
+{% endblock %}

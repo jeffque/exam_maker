@@ -1,8 +1,6 @@
-<html>
-	<head>
-		<title>Welcome to Exam Maker</title>
-	</head>
-	<body>
+{% extends 'base.html' %}
+{% block title %}Welcome to Exam Maker{% endblock %}
+{% block content %}
 {% if discipline_list %}
 	<ul>
 		{% for discipline in discipline_list %}
@@ -12,5 +10,4 @@
 {% else %}
 	<p>No disciplines available</p>
 {% endif %}
-	</body>
-</html>
+{% endblock %}

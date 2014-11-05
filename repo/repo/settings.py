@@ -26,6 +26,11 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
+# Global templates
+TEMPLATE_DIRS = (
+    'templates/',
+)
+
 
 # Application definition
 
