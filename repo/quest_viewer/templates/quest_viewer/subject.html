@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Subject {{ subject }}{% endblock %}
 {% block content %}
-<h1><a href='{% url 'subject' subject_id %}'>{{ subject }}</a></h1>
+<h1><a href='{% url 'quest_viewer:subject' subject_id %}'>{{ subject }}</a></h1>
 {% if discipline_list %}
 	<ul>
 		{% for d_subj in discipline_list %}
-		<li> {% if d_subj.main_discipline %}!{% endif %}<a href='{% url 'discipline'  d_subj.discipline.id %}'>{{ d_subj.discipline }}</a></li>
+		<li> {% if d_subj.main_discipline %}!{% endif %}<a href='{% url 'quest_viewer:discipline'  d_subj.discipline.id %}'>{{ d_subj.discipline }}</a></li>
 		{% endfor %}
 	</ul>
 {% else %}
