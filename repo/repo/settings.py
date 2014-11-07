@@ -28,7 +28,7 @@ ALLOWED_HOSTS = []
 
 # Global templates
 TEMPLATE_DIRS = (
-    'templates/',
+    BASE_DIR + '/templates/',
 )
 
 
