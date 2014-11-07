@@ -31,10 +31,10 @@ class Subject(models.Model):
 		return ';'.join(ret)
 
 	def main_disciplines_list(self):
-		return [str(discipline_subj.discipline) for discipline_subj in self.disciplinessubject_set.all() if discipline_subj.main_discipline]
+		return [discipline_subj.discipline for discipline_subj in self.disciplinessubject_set.all() if discipline_subj.main_discipline]
 
 	def main_disciplines_list_comma_separated(self, comma=', '):
-		return comma.join(self.main_disciplines_list())
+		return comma.join([str(discipline) for discipline in self.main_disciplines_list()])
 	main_disciplines_list_comma_separated.short_description = 'Main disciplines'
 
 	name = models.CharField(max_length=100)
