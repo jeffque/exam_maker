@@ -1,25 +1,29 @@
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 # TODO refactor and put it in a lib
 def non_empty_str(s):
 	return s != None and s != ''
 
 # Generic comment, for whatever reason
+@python_2_unicode_compatible
 class Comment(models.Model):
-	def __unicode__(self):
+	def __str__(self):
 		return self.text
 	text = models.TextField()
 
 # The discipline, like Math
+@python_2_unicode_compatible
 class Discipline(models.Model):
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 	name = models.CharField(max_length=100)
 	comments = models.ManyToManyField(Comment,blank=True)
 
 # The subject of a discipline, like Trigonometry
+@python_2_unicode_compatible
 class Subject(models.Model):
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 
 	def full_description(self):
@@ -42,8 +46,9 @@ class Subject(models.Model):
 	super_subject = models.ForeignKey('self', null=True, default=None, blank=True)
 	comments = models.ManyToManyField(Comment, blank=True)
 
+@python_2_unicode_compatible
 class DisciplinesSubject(models.Model):
-	def __unicode__(self):
+	def __str__(self):
 		return str(self.discipline) + ('(!)' if self.main_discipline else '') + ' - ' + str(self.subject)
 	class Meta:
 		unique_together = ('discipline', 'subject')
@@ -51,15 +56,17 @@ class DisciplinesSubject(models.Model):
 	subject = models.ForeignKey(Subject)
 	main_discipline = models.BooleanField(default=False)
 
+@python_2_unicode_compatible
 class Institute(models.Model):
-	def __unicode__(self):
+	def __str__(self):
 		return self.name + ((';' + self.acronym) if non_empty_str(self.acronym) else '')
 	name = models.CharField(max_length=1000)
 	acronym = models.CharField(max_length=100,null=True, blank=True)
 	comments = models.ManyToManyField(Comment, blank=True)
 
+@python_2_unicode_compatible
 class Source(models.Model):
-	def __unicode__(self):
+	def __str__(self):
 		return (self.institute.acronym if non_empty_str(self.institute.acronym) else self.institute.name) + (';' + str(self.year) if self.year != None else '')
 	institute = models.ForeignKey(Institute)
 	year = models.IntegerField(null=True, blank=True)
