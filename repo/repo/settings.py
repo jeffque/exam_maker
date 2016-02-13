@@ -27,10 +27,20 @@ TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = []
 
 # Global templates
-TEMPLATE_DIRS = (
-    BASE_DIR + '/templates/',
-)
-
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+        'DIRS': [BASE_DIR + '/templates/'],
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+            ]
+        }
+    },
+]
 
 # Application definition
 
