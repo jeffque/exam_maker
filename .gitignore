@@ -60,3 +60,7 @@ target/
 .swp
 .*.swp
 .*.swo
+
+# Eclipse PyDev stuff:
+.pydevproject
+.project
